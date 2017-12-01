@@ -1,48 +1,39 @@
 <html>
 	<head>
 		<style>
-			body {
+			span {
 				font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-				font-size: 12px;
-				font-weight: 400;
-			}
-			div.left {
-				display: inline-block;
-			}
-			div.right {
-				display: inline-block;
-				margin-left: 30px;
+				font-size: 10px;
+				font-weight: 300;
 			}
 			span.pos {
 				color: gray;
-				font-weight: 300;
-				font-size: 10px;
+				font-weight: 200;
 				padding-left: 5px
 			}
 			span.meanings {
 				color: #08c;
 			}
+			span.quote {
+				font-style: italic;
+			}
 			div.usages {
 				margin-top: 30px;
 			}
+			div.bottom {
+				margin-top: 3px;
+				margin-bottom: 10px;
+			}
 			div.usages span {
 				display: inline-block;
-				font-size: 10px;
 				margin-top: 3px;
-			}
-			span.quote {
-				font-style: italic;
 			}
 		</style>
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 	</head>
 	<body>
-		<div>
+		<div class='container'>
 			<div class='translation'>
-				<div class='left'>
-				</div>
-				<div class='right'>
-				</div>
 			</div>
 			<div class='usages'>
 			</div>

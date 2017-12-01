@@ -43,7 +43,7 @@ namespace KindleVocabularyImporter
 
 				foreach (var flashcard in flashcards)
 				{
-					//logger.LogInformation("Translating '{0}'", flashcard.Word);
+					logger.LogDebug("Translating '{0}'", flashcard.Word);
 					int retries = 0;
 					while (true)
 					{

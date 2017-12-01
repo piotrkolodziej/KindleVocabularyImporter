@@ -36,7 +36,7 @@ namespace KindleVocabularyImporter
 
 				List<object> result = new List<object>();
 
-				foreach (var flashcard in flashcards)
+				foreach (var flashcard in flashcards.Where(f => f.Translation != null))
 				{
 					result.Add(new
 					{
@@ -63,43 +63,36 @@ namespace KindleVocabularyImporter
 			{
 				StringWriter stringWriter = new StringWriter();
 				var back = new HtmlDocument();
-				back.Load(Path.GetFullPath(Path.Combine("Templates", "back.html")));
+				back.Load(Path.GetFullPath(Path.Combine("Templates", "html.template")));
 				var translationNode = back.DocumentNode.SelectSingleNode("//div[contains(@class, 'translation')]");
-				var usageNode = back.DocumentNode.SelectSingleNode("//div[contains(@class, 'usages')]");
+				var usagesNode = back.DocumentNode.SelectSingleNode("//div[contains(@class, 'usages')]");
 				FormatTranslation(translationNode, flashcard.Translation);
-				FormatUsage(usageNode, flashcard.Usage);
+				FormatUsage(usagesNode, flashcard.Usage);
 				back.Save(stringWriter);
 				return stringWriter.ToString().Replace("\t", "");
 			}
 
 			private void FormatTranslation(HtmlNode translationNode, Translation translation)
 			{
-				if (translation is null) return;
-
-				var leftNode = translationNode.SelectSingleNode("//div[contains(@class, 'left')]");
-				var rightNode = translationNode.SelectSingleNode("//div[contains(@class, 'right')]");
-
 				foreach (var result in translation.Results)
 				{
 					var word = String.Format("<span class='word'>{0}</span>", result.Form);
 					var pos = String.Format("<span class='pos'>{0}</span>", result.PartOfSpeech);
 					var meanings = String.Format("<span class='meanings'>{0}</span>", String.Join(" · ", result.Meanings.ToArray()));
-					var divLeft = HtmlNode.CreateNode($"<div>{word}{pos}</div>");
-					var divRight = HtmlNode.CreateNode($"<div>{meanings}</div>");
-					leftNode.AppendChild(divLeft);
-					rightNode.AppendChild(divRight);
+					var divTop = HtmlNode.CreateNode($"<div class='top'>{word}{pos}</div>");
+					var divBottom = HtmlNode.CreateNode($"<div class='bottom'>{meanings}</div>");
+					translationNode.AppendChild(divTop);
+					translationNode.AppendChild(divBottom);
 				}
 			}
 
-			private void FormatUsage(HtmlNode usageNode, ICollection<Lookup> usages)
+			private void FormatUsage(HtmlNode usagesNode, ICollection<Lookup> usages)
 			{
-				if (usageNode is null) return;
-
 				foreach (var usage in usages)
 				{
 					var usageFormatted = String.Format("<span class='quote'>'{0}'</span><span class='book'> –– {1}</span>", usage.Usage.Trim(), usage.Book);
 					var divNode = HtmlNode.CreateNode($"<div>{usageFormatted}</div>");
-					usageNode.AppendChild(divNode);
+					usagesNode.AppendChild(divNode);
 				}
 			}
 
