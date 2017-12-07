@@ -8,7 +8,9 @@ Every time you are checking a word in Kindle built-in dictionary, the device rem
 
 The idea behind the project was to export those words (along with translation) into CSV file that contains flashcards recognizable by Anki app.
 
-![alt text](https://github.com/piotrkolodziej/KindleVocabularyImporter/blob/master/Flashcard01.PNG "Polish Flashcard")
+<p align="center">
+<img src ="https://github.com/piotrkolodziej/KindleVocabularyImporter/blob/master/Flashcard01.PNG"/>
+</p>
 
 Requirements
 ============
