@@ -18,7 +18,7 @@ namespace KindleVocabularyImporter
 		//
 		static void Main(string[] args)
 		{
-			args = new string[] { "-t", "PL", "-e", "html", "-f", "html" };
+			//args = new string[] { "-t", "PL", "-e", "html", "-f", "html" };
 
 			var serviceProvider = Configure(args);
 
