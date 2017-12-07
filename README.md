@@ -8,6 +8,8 @@ Every time you are checking a word in Kindle built-in dictionary, the device rem
 
 The idea behind the project was to export those words (along with translation) into CSV file that contains flashcards recognizable by Anki app.
 
+![alt text](https://github.com/piotrkolodziej/KindleVocabularyImporter/blob/master/Flashcard01.PNG "Polish Flashcard")
+
 Requirements
 ============
 
@@ -29,8 +31,7 @@ Usage
 =====
 
 1. Put your vocab.db inside the project folder (sample vocab.db is included in the project). 
-2. Get country code of the visitor
-3. Run the program with parameters:
+2. Run the program with parameters:
 
 		dotnet run KindleVocabularyImporter [-t | -translate] <country_iso> [-e | -exporter] <exporter> [-f | -formatter] <formatter>
 		
